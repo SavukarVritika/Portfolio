@@ -40,7 +40,8 @@ const projects = [
     icon: Cloud,
     title: "Cloud-Based Image Recognition",
     subtitle: "GCP, AutoML, Vision AI, Cloud Run, Firebase",
-    description: "🧠 The Cloud-Based Image Recognition System is a full-stack web application designed to allow users to upload images through a browser and receive real-time classification results using a machine learning model hosted on Google Cloud. The system's frontend is built using HTML, CSS, and JavaScript, and is hosted on Firebase Hosting to ensure fast, secure, and globally available access. The backend is developed using Python Flask, structured as a RESTful API that handles image uploads, connects to the prediction model, and returns the output to the frontend. This Flask application is containerized using Docker and deployed on Google Cloud Run, enabling serverless execution with automatic scaling and low operational overhead.",
+    description: "🧠 A full-stack web application for real-time image classification using Google Cloud services.",
+    fullDescription: "The Cloud-Based Image Recognition System is a full-stack web application designed to allow users to upload images through a browser and receive real-time classification results using a machine learning model hosted on Google Cloud. The system's frontend is built using HTML, CSS, and JavaScript, and is hosted on Firebase Hosting to ensure fast, secure, and globally available access. The backend is developed using Python Flask, structured as a RESTful API that handles image uploads, connects to the prediction model, and returns the output to the frontend. This Flask application is containerized using Docker and deployed on Google Cloud Run, enabling serverless execution with automatic scaling and low operational overhead.\n\nThe machine learning component is implemented using Google AutoML Vision (Vertex AI), where a classification model was trained on approximately 8000 labeled images. After training, the model was deployed as a live prediction endpoint on Vertex AI. For image storage, the application uses Google Cloud Storage, where uploaded images are stored temporarily and securely before being passed to the model for inference. All services are integrated using secure access management through GCP IAM roles and service accounts, ensuring proper authentication and permission handling between components.\n\nThis project demonstrates end-to-end cloud-native AI deployment, combining frontend development, REST API design, model inference integration, and serverless infrastructure on Google Cloud. The system delivers real-time predictions in a user-friendly manner and is designed to be scalable, maintainable, and secure.",
     emoji: "🧠",
     github: "#"
   },
@@ -101,6 +102,7 @@ const TypewriterText = ({ text, delay = 100 }: { text: string; delay?: number })
 export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [expandedProjects, setExpandedProjects] = useState<number[]>([]);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -114,6 +116,14 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleProjectExpansion = (index: number) => {
+    setExpandedProjects(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
   };
 
   return (
@@ -449,18 +459,48 @@ export default function Home() {
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
                         <p className="text-sm text-gray-400 mb-3">{project.subtitle}</p>
-                        <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                          {project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim().length > 150 
-                            ? project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim().substring(0, 150) + '...'
-                            : project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim()}
-                        </p>
-                        <Button 
-                          size="sm"
-                          className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 text-xs"
-                          onClick={() => window.open(project.github, '_blank')}
+                        <motion.div
+                          initial={false}
+                          animate={{ height: expandedProjects.includes(index) ? 'auto' : 'auto' }}
+                          transition={{ duration: 0.3 }}
                         >
-                          VIEW PROJECT
-                        </Button>
+                          <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                            {expandedProjects.includes(index) && (project as any).fullDescription
+                              ? (project as any).fullDescription.split('\n').map((paragraph: string, pIndex: number) => (
+                                  <span key={pIndex}>
+                                    {paragraph}
+                                    {pIndex < (project as any).fullDescription.split('\n').length - 1 && (
+                                      <>
+                                        <br />
+                                        <br />
+                                      </>
+                                    )}
+                                  </span>
+                                ))
+                              : project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim()}
+                          </p>
+                        </motion.div>
+                        <div className="flex gap-2">
+                          {(project as any).fullDescription && (
+                            <Button 
+                              size="sm"
+                              variant="outline"
+                              className="border-[var(--bright-purple)] text-[var(--bright-purple)] hover:bg-[var(--bright-purple)] hover:text-white transition-all duration-200 text-xs"
+                              onClick={() => toggleProjectExpansion(index)}
+                            >
+                              {expandedProjects.includes(index) ? 'SHOW LESS' : 'LEARN MORE'}
+                            </Button>
+                          )}
+                          {project.github !== '#' && (
+                            <Button 
+                              size="sm"
+                              className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 text-xs"
+                              onClick={() => window.open(project.github, '_blank')}
+                            >
+                              VIEW PROJECT
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
