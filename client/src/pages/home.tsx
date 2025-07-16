@@ -448,10 +448,10 @@ export default function Home() {
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="group"
+                className="group h-full"
               >
-                <div className="gradient-border">
-                  <div className="gradient-border-inner p-6 h-full">
+                <div className="gradient-border h-full">
+                  <div className="gradient-border-inner p-6 h-full flex flex-col">
                     <div className="flex items-start mb-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-[var(--bright-purple)] to-[var(--electric-purple)] rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                         <project.icon className="w-6 h-6 text-white" />
@@ -459,49 +459,50 @@ export default function Home() {
                       <div className="flex-1">
                         <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
                         <p className="text-sm text-gray-400 mb-3">{project.subtitle}</p>
-                        <motion.div
-                          initial={false}
-                          animate={{ height: expandedProjects.includes(index) ? 'auto' : 'auto' }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                            {expandedProjects.includes(index) && (project as any).fullDescription
-                              ? (project as any).fullDescription.split('\n').map((paragraph: string, pIndex: number) => (
-                                  <span key={pIndex}>
-                                    {paragraph}
-                                    {pIndex < (project as any).fullDescription.split('\n').length - 1 && (
-                                      <>
-                                        <br />
-                                        <br />
-                                      </>
-                                    )}
-                                  </span>
-                                ))
-                              : project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim()}
-                          </p>
-                        </motion.div>
-                        <div className="flex gap-2">
-                          {(project as any).fullDescription && (
-                            <Button 
-                              size="sm"
-                              variant="outline"
-                              className="border-[var(--bright-purple)] text-[var(--bright-purple)] hover:bg-[var(--bright-purple)] hover:text-white transition-all duration-200 text-xs"
-                              onClick={() => toggleProjectExpansion(index)}
-                            >
-                              {expandedProjects.includes(index) ? 'SHOW LESS' : 'LEARN MORE'}
-                            </Button>
-                          )}
-                          {project.github !== '#' && (
-                            <Button 
-                              size="sm"
-                              className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 text-xs"
-                              onClick={() => window.open(project.github, '_blank')}
-                            >
-                              VIEW PROJECT
-                            </Button>
-                          )}
-                        </div>
                       </div>
+                    </div>
+                    <div className="flex-1 mb-4">
+                      <motion.div
+                        initial={false}
+                        animate={{ height: expandedProjects.includes(index) ? 'auto' : 'auto' }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <p className="text-gray-300 text-sm leading-relaxed">
+                          {expandedProjects.includes(index) && (project as any).fullDescription
+                            ? (project as any).fullDescription.split('\n').map((paragraph: string, pIndex: number) => (
+                                <span key={pIndex}>
+                                  {paragraph}
+                                  {pIndex < (project as any).fullDescription.split('\n').length - 1 && (
+                                    <>
+                                      <br />
+                                      <br />
+                                    </>
+                                  )}
+                                </span>
+                              ))
+                            : project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim()}
+                        </p>
+                      </motion.div>
+                    </div>
+                    <div className="flex gap-2 mt-auto">
+                      {(project as any).fullDescription && (
+                        <Button 
+                          size="sm"
+                          className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 text-xs"
+                          onClick={() => toggleProjectExpansion(index)}
+                        >
+                          {expandedProjects.includes(index) ? 'SHOW LESS' : 'LEARN MORE'}
+                        </Button>
+                      )}
+                      {project.github !== '#' && (
+                        <Button 
+                          size="sm"
+                          className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 text-xs"
+                          onClick={() => window.open(project.github, '_blank')}
+                        >
+                          VIEW PROJECT
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -521,10 +522,10 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            I'm currently looking to join a <span className="gradient-text">cross-functional</span> team
+            I'm eager to contribute to <span className="gradient-text">hackathons, tech challenges</span>
           </h2>
           <p className="text-gray-300 text-lg mb-8">
-            that values improving people's lives through accessible design
+            open-source initiatives and internships programs that push boundaries and drive meaningful innovation.
           </p>
 
           {/* Social Media Icons */}
