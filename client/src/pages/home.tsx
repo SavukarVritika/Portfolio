@@ -175,7 +175,7 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-8">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -190,9 +190,60 @@ export default function Home() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Text Content */}
+            {/* Character Illustration - Left Side */}
             <motion.div 
-              className="space-y-6"
+              className="flex justify-center lg:justify-start order-2 lg:order-1"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="relative">
+                <motion.div 
+                  className="w-80 h-80 bg-gradient-to-br from-[var(--bright-purple)]/30 to-[var(--electric-purple)]/30 rounded-full flex items-center justify-center"
+                  style={{ 
+                    transform: `translateY(${scrollY * 0.1}px)`,
+                    boxShadow: '0 0 100px rgba(139, 69, 255, 0.4)'
+                  }}
+                >
+                  <div className="w-64 h-64 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full flex items-center justify-center border border-[var(--bright-purple)]/30">
+                    <div className="w-48 h-48 bg-gradient-to-br from-gray-700 to-gray-800 rounded-full flex items-center justify-center">
+                      <Code className="w-20 h-20 text-[var(--bright-purple)]" />
+                    </div>
+                  </div>
+                </motion.div>
+                
+                {/* Floating elements */}
+                <motion.div 
+                  className="absolute -top-6 -right-6 w-12 h-12 bg-[var(--bright-purple)] rounded-full opacity-80"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.6, 1, 0.6]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div 
+                  className="absolute -bottom-6 -left-6 w-8 h-8 bg-[var(--electric-purple)] rounded-full opacity-80"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.6, 1, 0.6]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                />
+              </div>
+            </motion.div>
+
+            {/* Text Content - Right Side */}
+            <motion.div 
+              className="space-y-6 order-1 lg:order-2"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -208,61 +259,15 @@ export default function Home() {
                 </p>
               </div>
             </motion.div>
-
-            {/* Character Illustration */}
-            <motion.div 
-              className="flex justify-center lg:justify-end"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <div className="relative">
-                <motion.div 
-                  className="w-80 h-80 bg-gradient-to-br from-[var(--bright-purple)]/20 to-[var(--electric-purple)]/20 rounded-full flex items-center justify-center animate-glow"
-                  style={{ transform: `translateY(${scrollY * 0.1}px)` }}
-                >
-                  <div className="w-64 h-64 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full flex items-center justify-center">
-                    <Code className="w-16 h-16 text-[var(--bright-purple)]" />
-                  </div>
-                </motion.div>
-                
-                {/* Floating elements */}
-                <motion.div 
-                  className="absolute -top-4 -right-4 w-8 h-8 bg-[var(--bright-purple)] rounded-full"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.7, 1, 0.7]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                <motion.div 
-                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-[var(--electric-purple)] rounded-full"
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.7, 1, 0.7]
-                  }}
-                  transition={{ 
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1
-                  }}
-                />
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
 
       {/* About Section */}
       <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-4xl mx-auto text-center">
           <motion.div 
-            className="text-center mb-12"
+            className="mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -279,40 +284,28 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
+            className="text-left max-w-3xl mx-auto"
           >
-            <Card className="bg-white/5 backdrop-blur-sm border-[var(--bright-purple)]/20 hover:border-[var(--bright-purple)]/40 transition-all duration-300">
-              <CardContent className="p-8">
-                <div className="space-y-6 text-gray-300 leading-relaxed">
-                  <p>
-                    👩‍💻 I'm <span className="text-white font-medium">Vritika Savukar</span>, a passionate Computer Science student currently in my penultimate year at Siddaganga Institute of Technology, specializing in <span className="text-[var(--bright-purple)] font-medium">Artificial Intelligence and Machine Learning</span>. I have a strong foundation in Data Structures & Algorithms, Software Design, and core CS subjects like Operating Systems, DBMS, and Computer Networks.
-                  </p>
+            <div className="space-y-6 text-gray-300 leading-relaxed">
+              <p className="text-lg">
+                👩‍💻 I'm <span className="text-white font-medium">Vritika Savukar</span>, a passionate Computer Science student currently in my penultimate year at Siddaganga Institute of Technology, specializing in <span className="text-[var(--bright-purple)] font-medium">Artificial Intelligence and Machine Learning</span>. I have a strong foundation in Data Structures & Algorithms, Software Design, and core CS subjects like Operating Systems, DBMS, and Computer Networks.
+              </p>
 
-                  <p>
-                    I'm especially interested in building scalable AI-driven applications that merge the power of ML, NLP, and Cloud Computing to solve real-world problems. My work often spans from intuitive frontend design to robust backend logic and intelligent model deployment.
-                  </p>
+              <p className="text-lg">
+                I'm especially interested in building scalable AI-driven applications that merge the power of ML, NLP, and Cloud Computing to solve real-world problems. My work often spans from intuitive frontend design to robust backend logic and intelligent model deployment.
+              </p>
 
-                  <p>
-                    My technical toolkit includes <span className="text-[var(--bright-purple)] font-medium">Python, Java, C</span>, and frameworks like <span className="text-[var(--bright-purple)] font-medium">Flask, Streamlit, and LangChain</span>. I'm highly comfortable with Unix/Linux, and I deploy projects using Google Cloud Platform, Docker, and CI/CD pipelines.
-                  </p>
-
-                  <div className="pt-4 space-y-2">
-                    <p className="text-sm text-gray-400">
-                      🎯 Top 10 finalist in Smart India Hackathon 2024 • Pre-Finalist in IndustrAI Hackathon @ IIT Madras 2025
-                    </p>
-                    <p className="text-sm text-gray-400">
-                      Outside tech: Trained Carnatic classical vocalist • Karate enthusiast • DSA mentor
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              <p className="text-lg">
+                My technical toolkit includes <span className="text-[var(--bright-purple)] font-medium">Python, Java, C</span>, and frameworks like <span className="text-[var(--bright-purple)] font-medium">Flask, Streamlit, and LangChain</span>. I'm highly comfortable with Unix/Linux, and I deploy projects using Google Cloud Platform, Docker, and CI/CD pipelines.
+              </p>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
@@ -320,12 +313,11 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-            <p className="text-xl text-gray-300">🚀 Here are a few of my favorite projects</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-2 gap-8 mb-16"
+            className="grid md:grid-cols-2 gap-6 mb-16"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -337,28 +329,29 @@ export default function Home() {
                 variants={itemVariants}
                 className="group"
               >
-                <Card className="bg-gradient-to-br from-[var(--bright-purple)]/10 to-[var(--deep-blue)]/20 border-[var(--bright-purple)]/30 hover:border-[var(--bright-purple)]/50 transition-all duration-300 hover:scale-[1.02] purple-glow-hover">
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[var(--bright-purple)] to-[var(--electric-purple)] rounded-lg flex items-center justify-center mr-4">
+                <div className="gradient-border">
+                  <div className="gradient-border-inner p-6 h-full">
+                    <div className="flex items-start mb-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[var(--bright-purple)] to-[var(--electric-purple)] rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
                         <project.icon className="w-6 h-6 text-white" />
                       </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white">{project.title}</h3>
-                        <p className="text-sm text-gray-400">{project.subtitle}</p>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
+                        <p className="text-sm text-gray-400 mb-3">{project.subtitle}</p>
+                        <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                          {project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim()}
+                        </p>
+                        <Button 
+                          size="sm"
+                          className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 text-xs"
+                          onClick={() => window.open('https://github.com/vritikasavukar', '_blank')}
+                        >
+                          LEARN MORE
+                        </Button>
                       </div>
                     </div>
-                    <p className="text-gray-300 mb-6 leading-relaxed">
-                      {project.description}
-                    </p>
-                    <Button 
-                      className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200"
-                      onClick={() => window.open('https://github.com/vritikasavukar', '_blank')}
-                    >
-                      LEARN MORE
-                    </Button>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -375,14 +368,14 @@ export default function Home() {
           viewport={{ once: true }}
         >
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            I'm currently looking to join a <span className="gradient-text">tech team</span>
+            I'm currently looking to join a <span className="gradient-text">cross-functional</span> team
           </h2>
           <p className="text-gray-300 text-lg mb-8">
-            that values innovation and building AI-driven solutions to solve real-world problems
+            that values improving people's lives through accessible design
           </p>
 
           {/* Social Media Icons */}
-          <div className="flex justify-center space-x-6">
+          <div className="flex justify-center space-x-4 mb-8">
             {[
               { icon: Linkedin, href: "https://linkedin.com/in/vritika-savukar" },
               { icon: Github, href: "https://github.com/vritikasavukar" },
@@ -394,12 +387,32 @@ export default function Home() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-12 h-12 bg-gradient-to-br from-[var(--bright-purple)] to-[var(--electric-purple)] rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200"
+                className="w-10 h-10 bg-gradient-to-br from-[var(--bright-purple)] to-[var(--electric-purple)] rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <social.icon className="w-6 h-6 text-white" />
+                <social.icon className="w-5 h-5 text-white" />
               </motion.a>
+            ))}
+          </div>
+
+          {/* Tech Stack Icons */}
+          <div className="flex justify-center space-x-4 opacity-60">
+            {[
+              { name: "Python", color: "#3776ab" },
+              { name: "Java", color: "#f89820" },
+              { name: "React", color: "#61dafb" },
+              { name: "Flask", color: "#000000" },
+              { name: "GCP", color: "#4285f4" },
+              { name: "Docker", color: "#2496ed" }
+            ].map((tech, index) => (
+              <div
+                key={index}
+                className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white"
+                style={{ backgroundColor: tech.color }}
+              >
+                {tech.name[0]}
+              </div>
             ))}
           </div>
         </motion.div>
