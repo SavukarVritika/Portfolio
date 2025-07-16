@@ -391,19 +391,19 @@ export default function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-left max-w-3xl mx-auto"
+            className="text-center max-w-4xl mx-auto"
           >
             <div className="space-y-6 text-gray-300 leading-relaxed">
-              <p className="text-lg">
-                👩‍💻 I'm <span className="text-white font-medium">Vritika Savukar</span>, a passionate Computer Science student currently in my penultimate year at Siddaganga Institute of Technology, specializing in <span className="text-[var(--bright-purple)] font-medium">Artificial Intelligence and Machine Learning</span>. I have a strong foundation in Data Structures & Algorithms, Software Design, and core CS subjects like Operating Systems, DBMS, and Computer Networks.
+              <p className="text-lg text-justify font-serif">
+                👩‍💻 I'm <span className="text-white font-semibold">Vritika Savukar</span>, a passionate Computer Science student currently in my penultimate year at Siddaganga Institute of Technology, specializing in <span className="text-[var(--bright-purple)] font-semibold">Artificial Intelligence and Machine Learning</span>. I have a strong foundation in Data Structures & Algorithms, Software Design, and core CS subjects like Operating Systems, DBMS, and Computer Networks.
               </p>
 
-              <p className="text-lg">
+              <p className="text-lg text-justify font-serif">
                 I'm especially interested in building scalable AI-driven applications that merge the power of ML, NLP, and Cloud Computing to solve real-world problems. My work often spans from intuitive frontend design to robust backend logic and intelligent model deployment.
               </p>
 
-              <p className="text-lg">
-                My technical toolkit includes <span className="text-[var(--bright-purple)] font-medium">Python, Java, C</span>, and frameworks like <span className="text-[var(--bright-purple)] font-medium">Flask, Streamlit, and LangChain</span>. I'm highly comfortable with Unix/Linux, and I deploy projects using Google Cloud Platform, Docker, and CI/CD pipelines.
+              <p className="text-lg text-justify font-serif">
+                My technical toolkit includes <span className="text-[var(--bright-purple)] font-semibold">Python, Java, C</span>, and frameworks like <span className="text-[var(--bright-purple)] font-semibold">Flask, Streamlit, and LangChain</span>. I'm highly comfortable with Unix/Linux, and I deploy projects using Google Cloud Platform, Docker, and CI/CD pipelines.
               </p>
             </div>
           </motion.div>
@@ -420,7 +420,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
           </motion.div>
 
           <motion.div
@@ -502,42 +502,21 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Tech Stack Icons */}
-          <div className="flex justify-center space-x-4 opacity-60 mb-4">
-            {[
-              { name: "Python", color: "#3776ab" },
-              { name: "Java", color: "#f89820" },
-              { name: "React", color: "#61dafb" },
-              { name: "Flask", color: "#000000" },
-              { name: "GCP", color: "#4285f4" },
-              { name: "Docker", color: "#2496ed" }
-            ].map((tech, index) => (
-              <div
-                key={index}
-                className="w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold text-white"
-                style={{ backgroundColor: tech.color }}
-              >
-                {tech.name[0]}
-              </div>
-            ))}
-          </div>
-
           {/* Coding Profile Links */}
-          <div className="flex justify-center space-x-4 text-sm">
+          <div className="flex justify-center space-x-6 text-sm">
             <a
               href="https://www.geeksforgeeks.org/user/pysd1s2tsd/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[var(--bright-purple)] transition-colors duration-200"
+              className="px-4 py-2 bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white rounded-lg hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 font-medium"
             >
               GeeksforGeeks
             </a>
-            <span className="text-gray-600">•</span>
             <a
               href="https://leetcode.com/u/Vritika_VS/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gray-400 hover:text-[var(--bright-purple)] transition-colors duration-200"
+              className="px-4 py-2 bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white rounded-lg hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 font-medium"
             >
               LeetCode
             </a>
