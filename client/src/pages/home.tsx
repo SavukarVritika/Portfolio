@@ -163,6 +163,14 @@ export default function Home() {
                 >
                   Projects
                 </button>
+                <a 
+                  href="https://medium.com/@savukar_vritika"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-[var(--electric-purple)] transition-colors duration-200 font-medium"
+                >
+                  Blog
+                </a>
               </div>
             </div>
 
@@ -206,6 +214,14 @@ export default function Home() {
                 >
                   Projects
                 </button>
+                <a 
+                  href="https://medium.com/@savukar_vritika"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block px-3 py-2 text-gray-300 hover:text-[var(--electric-purple)] transition-colors duration-200"
+                >
+                  Blog
+                </a>
               </div>
             </motion.div>
           )}
@@ -370,10 +386,10 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="space-y-4">
-                <p className="text-lg text-gray-300">A CS Student who</p>
+                <p className="text-lg text-gray-300">CS student passionate about building</p>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                  Builds AI Solutions
-                  <br />by their <span className="gradient-text">Code</span>...
+                  AI-driven, human-centered
+                  <br /><span className="gradient-text">solutions</span>
                 </h1>
                 <p className="text-gray-400 text-sm max-w-md">
                   Where Code Meets Intelligence, Innovation Happens!
@@ -408,15 +424,15 @@ export default function Home() {
             className="text-center max-w-4xl mx-auto"
           >
             <div className="space-y-6 text-gray-300 leading-relaxed">
-              <p className="text-lg text-justify font-serif">
+              <p className="text-xl text-justify">
                 👩‍💻 I'm <span className="text-white font-semibold">Vritika Savukar</span>, a passionate Computer Science student currently in my penultimate year at Siddaganga Institute of Technology, specializing in <span className="text-[var(--bright-purple)] font-semibold">Artificial Intelligence and Machine Learning</span>. I have a strong foundation in Data Structures & Algorithms, Software Design, and core CS subjects like Operating Systems, DBMS, and Computer Networks.
               </p>
 
-              <p className="text-lg text-justify font-serif">
+              <p className="text-xl text-justify">
                 I'm especially passionate about building scalable AI-driven applications that merge the power of ML, NLP, and Cloud Computing to solve real-world problems. My work spans from intuitive frontend design to robust backend logic and intelligent model deployment, creating comprehensive solutions that make a meaningful impact.
               </p>
 
-              <p className="text-lg text-justify font-serif">
+              <p className="text-xl text-justify">
                 My technical toolkit includes <span className="text-[var(--bright-purple)] font-semibold">Python, Java, C</span>, and frameworks like <span className="text-[var(--bright-purple)] font-semibold">Flask, Streamlit, and LangChain</span>. I'm highly comfortable with Unix/Linux environments and deploy projects using Google Cloud Platform, Docker, and CI/CD pipelines for seamless production deployments.
               </p>
             </div>
