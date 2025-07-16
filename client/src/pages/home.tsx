@@ -10,7 +10,10 @@ import {
   Twitter,
   Mail,
   Menu,
-  X
+  X,
+  Terminal,
+  Cpu,
+  Binary
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -67,6 +70,28 @@ const itemVariants = {
       ease: "easeOut"
     }
   }
+};
+
+const TypewriterText = ({ text, delay = 100 }: { text: string; delay?: number }) => {
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(prev => prev + text[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, delay);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex, text, delay]);
+
+  return (
+    <span className="text-[var(--bright-purple)] font-medium">
+      {displayText}
+      <span className="animate-pulse">|</span>
+    </span>
+  );
 };
 
 export default function Home() {
@@ -184,7 +209,7 @@ export default function Home() {
               className="inline-block"
             >
               <p className="text-lg text-gray-300 mb-2">
-                Hello! I Am <span className="text-[var(--bright-purple)] font-medium">Vritika Savukar</span>
+                Hello! I Am <TypewriterText text="Vritika Savukar" delay={80} />
               </p>
             </motion.div>
           </div>
@@ -199,25 +224,107 @@ export default function Home() {
             >
               <div className="relative">
                 <motion.div 
-                  className="w-80 h-80 bg-gradient-to-br from-[var(--bright-purple)]/30 to-[var(--electric-purple)]/30 rounded-full flex items-center justify-center"
+                  className="w-80 h-80 bg-gradient-to-br from-[var(--bright-purple)]/30 to-[var(--electric-purple)]/30 rounded-2xl flex items-center justify-center"
                   style={{ 
                     transform: `translateY(${scrollY * 0.1}px)`,
                     boxShadow: '0 0 100px rgba(139, 69, 255, 0.4)'
                   }}
+                  animate={{
+                    boxShadow: [
+                      '0 0 100px rgba(139, 69, 255, 0.4)',
+                      '0 0 120px rgba(139, 69, 255, 0.6)',
+                      '0 0 100px rgba(139, 69, 255, 0.4)'
+                    ]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 >
-                  <div className="w-64 h-64 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full flex items-center justify-center border border-[var(--bright-purple)]/30">
-                    <div className="w-48 h-48 bg-gradient-to-br from-gray-700 to-gray-800 rounded-full flex items-center justify-center">
-                      <Code className="w-20 h-20 text-[var(--bright-purple)]" />
+                  <div className="w-64 h-64 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl flex items-center justify-center border border-[var(--bright-purple)]/30 relative overflow-hidden">
+                    {/* Background grid pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="grid grid-cols-8 h-full w-full">
+                        {[...Array(64)].map((_, i) => (
+                          <div key={i} className="border border-[var(--bright-purple)]/20"></div>
+                        ))}
+                      </div>
                     </div>
+                    
+                    {/* Central icons */}
+                    <div className="relative z-10 flex items-center justify-center space-x-4">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                      >
+                        <Cpu className="w-16 h-16 text-[var(--bright-purple)]" />
+                      </motion.div>
+                      <motion.div
+                        animate={{ y: [-5, 5, -5] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <Terminal className="w-12 h-12 text-[var(--electric-purple)]" />
+                      </motion.div>
+                    </div>
+                    
+                    {/* Floating code symbols */}
+                    <motion.div 
+                      className="absolute top-4 right-4 text-[var(--bright-purple)] opacity-60"
+                      animate={{ opacity: [0.3, 0.8, 0.3] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      &lt;/&gt;
+                    </motion.div>
+                    <motion.div 
+                      className="absolute bottom-4 left-4 text-[var(--electric-purple)] opacity-60"
+                      animate={{ opacity: [0.3, 0.8, 0.3] }}
+                      transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
+                    >
+                      {}
+                    </motion.div>
                   </div>
                 </motion.div>
                 
-                {/* Floating elements */}
+                {/* Floating tech elements */}
                 <motion.div 
-                  className="absolute -top-6 -right-6 w-12 h-12 bg-[var(--bright-purple)] rounded-full opacity-80"
+                  className="absolute -top-6 -right-6 w-12 h-12 bg-[var(--bright-purple)] rounded-lg opacity-80 flex items-center justify-center"
                   animate={{ 
                     scale: [1, 1.2, 1],
-                    opacity: [0.6, 1, 0.6]
+                    opacity: [0.6, 1, 0.6],
+                    rotate: [0, 180, 360]
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <Binary className="w-6 h-6 text-white" />
+                </motion.div>
+                <motion.div 
+                  className="absolute -bottom-6 -left-6 w-10 h-10 bg-[var(--electric-purple)] rounded-lg opacity-80 flex items-center justify-center"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.6, 1, 0.6],
+                    rotate: [0, -180, -360]
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1.5
+                  }}
+                >
+                  <Code className="w-5 h-5 text-white" />
+                </motion.div>
+                
+                {/* Additional floating elements */}
+                <motion.div 
+                  className="absolute top-1/2 -left-8 w-6 h-6 bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] rounded-full"
+                  animate={{ 
+                    y: [-10, 10, -10],
+                    opacity: [0.5, 1, 0.5]
                   }}
                   transition={{ 
                     duration: 2,
@@ -226,10 +333,10 @@ export default function Home() {
                   }}
                 />
                 <motion.div 
-                  className="absolute -bottom-6 -left-6 w-8 h-8 bg-[var(--electric-purple)] rounded-full opacity-80"
+                  className="absolute top-1/4 -right-4 w-4 h-4 bg-gradient-to-r from-[var(--electric-purple)] to-[var(--bright-purple)] rounded-full"
                   animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.6, 1, 0.6]
+                    y: [10, -10, 10],
+                    opacity: [0.5, 1, 0.5]
                   }}
                   transition={{ 
                     duration: 2,
@@ -344,7 +451,7 @@ export default function Home() {
                         <Button 
                           size="sm"
                           className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 text-xs"
-                          onClick={() => window.open('https://github.com/vritikasavukar', '_blank')}
+                          onClick={() => window.open('https://github.com/SavukarVritika', '_blank')}
                         >
                           LEARN MORE
                         </Button>
@@ -377,10 +484,9 @@ export default function Home() {
           {/* Social Media Icons */}
           <div className="flex justify-center space-x-4 mb-8">
             {[
-              { icon: Linkedin, href: "https://linkedin.com/in/vritika-savukar" },
-              { icon: Github, href: "https://github.com/vritikasavukar" },
-              { icon: Twitter, href: "https://twitter.com/vritikasavukar" },
-              { icon: Mail, href: "mailto:vritika.savukar@example.com" }
+              { icon: Linkedin, href: "https://www.linkedin.com/in/vritika-savukar-71885b266/" },
+              { icon: Github, href: "https://github.com/SavukarVritika" },
+              { icon: Mail, href: "mailto:savukarvritika@gmail.com" }
             ].map((social, index) => (
               <motion.a
                 key={index}
@@ -397,7 +503,7 @@ export default function Home() {
           </div>
 
           {/* Tech Stack Icons */}
-          <div className="flex justify-center space-x-4 opacity-60">
+          <div className="flex justify-center space-x-4 opacity-60 mb-4">
             {[
               { name: "Python", color: "#3776ab" },
               { name: "Java", color: "#f89820" },
@@ -414,6 +520,27 @@ export default function Home() {
                 {tech.name[0]}
               </div>
             ))}
+          </div>
+
+          {/* Coding Profile Links */}
+          <div className="flex justify-center space-x-4 text-sm">
+            <a
+              href="https://www.geeksforgeeks.org/user/pysd1s2tsd/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[var(--bright-purple)] transition-colors duration-200"
+            >
+              GeeksforGeeks
+            </a>
+            <span className="text-gray-600">•</span>
+            <a
+              href="https://leetcode.com/u/Vritika_VS/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-400 hover:text-[var(--bright-purple)] transition-colors duration-200"
+            >
+              LeetCode
+            </a>
           </div>
         </motion.div>
       </section>
