@@ -22,31 +22,35 @@ import { useState, useEffect } from "react";
 const projects = [
   {
     icon: MessageSquare,
-    title: "AI Debate Arena",
+    title: "AI Debate Platform",
     subtitle: "LangChain & LLMs",
     description: "🔮 A debate platform powered by LangChain & LLMs, integrating models like GPT, Claude, Gemini, and Mistral for multi-round AI argument simulation and judging.",
-    emoji: "🔮"
+    emoji: "🔮",
+    github: "https://github.com/SavukarVritika/AI_Debat_Platform"
   },
   {
     icon: Scale,
-    title: "Legal Case Outcome Predictor",
+    title: "Traffic Law Prediction and Outcome Forecasting",
     subtitle: "ML/NLP",
     description: "⚖️ An ML/NLP model that predicts applicable laws and outcomes from legal case facts using TF-IDF and KNN for accurate legal analysis.",
-    emoji: "⚖️"
+    emoji: "⚖️",
+    github: "https://github.com/SavukarVritika/law-prediction-outcome-forcesting"
   },
   {
     icon: Cloud,
     title: "Cloud-Based Image Recognition",
-    subtitle: "GCP AutoML",
-    description: "🧠 An image classifier deployed using GCP AutoML, Flask backend, and Firebase frontend for real-time predictions and scalable performance.",
-    emoji: "🧠"
+    subtitle: "GCP, AutoML, Vision AI, Cloud Run, Firebase",
+    description: "🧠 The Cloud-Based Image Recognition System is a full-stack web application designed to allow users to upload images through a browser and receive real-time classification results using a machine learning model hosted on Google Cloud. The system's frontend is built using HTML, CSS, and JavaScript, and is hosted on Firebase Hosting to ensure fast, secure, and globally available access. The backend is developed using Python Flask, structured as a RESTful API that handles image uploads, connects to the prediction model, and returns the output to the frontend. This Flask application is containerized using Docker and deployed on Google Cloud Run, enabling serverless execution with automatic scaling and low operational overhead.",
+    emoji: "🧠",
+    github: "#"
   },
   {
     icon: ChefHat,
     title: "Recipe Finder using NLP",
-    subtitle: "NLP & String Matching",
+    subtitle: "NLP and Information Retrieval",
     description: "🍲 Retrieves recipes from fuzzy ingredient input using advanced string-matching algorithms and synonym expansion for intelligent recipe discovery.",
-    emoji: "🍲"
+    emoji: "🍲",
+    github: "https://github.com/SavukarVritika/recipe-finder"
   }
 ];
 
@@ -208,7 +212,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               className="inline-block"
             >
-              <p className="text-lg text-gray-300 mb-2">
+              <p className="text-xl md:text-2xl text-gray-300 mb-2 font-serif">
                 Hello! I Am <TypewriterText text="Vritika Savukar" delay={80} />
               </p>
             </motion.div>
@@ -362,7 +366,7 @@ export default function Home() {
                   <br />by their <span className="gradient-text">Code</span>...
                 </h1>
                 <p className="text-gray-400 text-sm max-w-md">
-                  Because what the code does not improve, you what else can?
+                  Where Code Meets Intelligence, Innovation Happens!
                 </p>
               </div>
             </motion.div>
@@ -399,11 +403,11 @@ export default function Home() {
               </p>
 
               <p className="text-lg text-justify font-serif">
-                I'm especially interested in building scalable AI-driven applications that merge the power of ML, NLP, and Cloud Computing to solve real-world problems. My work often spans from intuitive frontend design to robust backend logic and intelligent model deployment.
+                I'm especially passionate about building scalable AI-driven applications that merge the power of ML, NLP, and Cloud Computing to solve real-world problems. My work spans from intuitive frontend design to robust backend logic and intelligent model deployment, creating comprehensive solutions that make a meaningful impact.
               </p>
 
               <p className="text-lg text-justify font-serif">
-                My technical toolkit includes <span className="text-[var(--bright-purple)] font-semibold">Python, Java, C</span>, and frameworks like <span className="text-[var(--bright-purple)] font-semibold">Flask, Streamlit, and LangChain</span>. I'm highly comfortable with Unix/Linux, and I deploy projects using Google Cloud Platform, Docker, and CI/CD pipelines.
+                My technical toolkit includes <span className="text-[var(--bright-purple)] font-semibold">Python, Java, C</span>, and frameworks like <span className="text-[var(--bright-purple)] font-semibold">Flask, Streamlit, and LangChain</span>. I'm highly comfortable with Unix/Linux environments and deploy projects using Google Cloud Platform, Docker, and CI/CD pipelines for seamless production deployments.
               </p>
             </div>
           </motion.div>
@@ -446,14 +450,16 @@ export default function Home() {
                         <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
                         <p className="text-sm text-gray-400 mb-3">{project.subtitle}</p>
                         <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                          {project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim()}
+                          {project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim().length > 150 
+                            ? project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim().substring(0, 150) + '...'
+                            : project.description.replace(/🔮|⚖️|🧠|🍲/g, '').trim()}
                         </p>
                         <Button 
                           size="sm"
                           className="bg-gradient-to-r from-[var(--bright-purple)] to-[var(--electric-purple)] text-white hover:shadow-lg hover:shadow-[var(--bright-purple)]/30 transition-all duration-200 text-xs"
-                          onClick={() => window.open('https://github.com/SavukarVritika', '_blank')}
+                          onClick={() => window.open(project.github, '_blank')}
                         >
-                          LEARN MORE
+                          VIEW PROJECT
                         </Button>
                       </div>
                     </div>
