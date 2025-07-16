@@ -1,0 +1,29 @@
+Text Description for Your Portfolio Website
+👩‍💻 I’m Vritika Savukar, a passionate Computer Science student currently in my penultimate year at Siddaganga Institute of Technology, specializing in Artificial Intelligence and Machine Learning. I have a strong foundation in Data Structures & Algorithms, Software Design, and core CS subjects like Operating Systems, DBMS, and Computer Networks.
+
+I’m especially interested in building scalable AI-driven applications that merge the power of ML, NLP, and Cloud Computing to solve real-world problems. My work often spans from intuitive frontend design to robust backend logic and intelligent model deployment.
+
+My technical toolkit includes Python, Java, C, and frameworks like Flask, Streamlit, and LangChain. I’m highly comfortable with Unix/Linux, and I deploy projects using Google Cloud Platform, Docker, and CI/CD pipelines.
+
+🚀 Here are a few of my favorite projects:
+
+🔮 AI Debate Arena – A debate platform powered by LangChain & LLMs, integrating models like GPT, Claude, Gemini, and Mistral for multi-round AI argument simulation and judging.
+View on GitHub
+
+⚖️ Legal Case Outcome Predictor – An ML/NLP model that predicts applicable laws and outcomes from legal case facts using TF-IDF and KNN.
+View on GitHub
+
+🧠 Cloud-Based Image Recognition System – An image classifier deployed using GCP AutoML, Flask backend, and Firebase frontend for real-time predictions.
+
+🍲 Recipe Finder using NLP – Retrieves recipes from fuzzy ingredient input using string-matching and synonym expansion.
+
+🎯 I'm also an active participant in hackathons and tech events, having been a Top 10 finalist in Smart India Hackathon 2024 and a Pre-Finalist in IndustrAI Hackathon @ IIT Madras 2025.
+
+Outside tech, I’m a trained Carnatic classical vocalist, a self-defense enthusiast (Karate), and I enjoy mentoring juniors in DSA and open-source coding.
+
+Bonus:
+
+Use Framer Motion for animations on project cards, hero text, and section entrances.
+
+Add responsive design, clean mobile layout, and meta tags for SEO.
+Optional: Add a Blog section or Certifications timeline.
